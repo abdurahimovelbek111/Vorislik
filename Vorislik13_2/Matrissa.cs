@@ -92,11 +92,11 @@ namespace Vorislik13_2
                 {
                     for (int k = 0; k < n; k++)
                     {
-                        s += A[i, k] * B[k, j];
+                        s += A[i, k] * B[k, j];                        
                     }
+                    C[i, j] = s;
                     s = 0;
-                }
-                Console.WriteLine();
+                }               
             }
             return C;
         }

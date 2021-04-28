@@ -77,16 +77,12 @@ namespace Vorislik13_2
             }
 
             Console.WriteLine("----------Matrissa ko'paytmasi------------------------>");
-             int s = 0;
+            int[,] Y = arif.Kopaytma_Matrissa();       
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
-                {   for(int k=0;k<m;k++)
-                    {
-                        s += arif.A[i, k] * arif.B[k, j];
-                    }
-                    Console.Write(s + "  ");
-                    s = 0;
+                {
+                    Console.Write(Y[i,j]+"  ");
                 }
                 Console.WriteLine();
             }
