@@ -34,9 +34,9 @@ namespace Vorislik13_2
             int n = int.Parse(Console.ReadLine());
             Console.Write("m=");
             int m = int.Parse(Console.ReadLine());
-            Matrissa matrissa = new Matrissa(n, m);
-            int[,] A = matrissa.A_Matrissa();
-            int[,] B = matrissa.B_Matrissa();
+           ARIFM_MATRITSA arif = new ARIFM_MATRITSA(n,m);
+            int[,] A = arif.A_Matrissa();
+            int[,] B =arif.B_Matrissa();
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
@@ -55,38 +55,35 @@ namespace Vorislik13_2
                 Console.WriteLine();
             } 
             Console.WriteLine("-----------Matrissa yig'indisi------------------------->");
-            ARIFM_MATRITSA arif = new ARIFM_MATRITSA(n, m);
+           
             int[,] X = arif.Yig_Matrissa();
-           // Console.WriteLine(arif.Yig_Matrissa().ToString());
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
                 {
-                     X[i, j] = matrissa.A[i, j] + matrissa.B[i, j];
                     Console.Write(X[i, j] + "  ");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("------------Matrissa ayirmasi------------------------>");
+            X = arif.Ayirma_Matrissa();
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
                 {
-                    X[i, j] = matrissa.A[i, j] - matrissa.B[i, j];
                     Console.Write(X[i, j] + "  ");
                 }
                 Console.WriteLine();
             }
 
             Console.WriteLine("----------Matrissa ko'paytmasi------------------------>");
-            int s = 0;
+             int s = 0;
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
-                {
-                    for (int k = 0; k < n; k++)
+                {   for(int k=0;k<m;k++)
                     {
-                        s += matrissa.A[i, k] * matrissa.B[k, j];
+                        s += arif.A[i, k] * arif.B[k, j];
                     }
                     Console.Write(s + "  ");
                     s = 0;
