@@ -10,6 +10,7 @@ namespace Vorislik13_2
     {
         private string a1;
         private string a2;
+       public  string x = "";
         public Kompleks(string a1,string a2)
         {
             this.a1 = a1;
@@ -25,8 +26,17 @@ namespace Vorislik13_2
             get { return a2; }
             set { a2 = value; }
         }
+        public string Yigindi()
+        {
+            string[] a = A1.Split('+', 'i', '*');
+            string[] a1 = A2.Split('+', 'i', '*');
+            int c1 = int.Parse(a[0]) + int.Parse(a1[0]);
+            int c2 = int.Parse(a[1]) + int.Parse(a1[1]);
+            x = c1 + "+" + c2 + "*i";
+            return x;
+        }
     }
-    class Komp_Kv_Tenglama : Kompleks
+    class Raqamlar : Kompleks
     {
         private string b1;
         public string B1
@@ -34,20 +44,12 @@ namespace Vorislik13_2
             get { return b1; }
             set { b1 = value; }
         }
-        public Komp_Kv_Tenglama(string a1, string a2, string b1)
+        public Raqamlar(string a1, string a2, string b1)
             : base(a1, a2)
         {
             this.b1 = b1;
         }
-        public string Yigindi()
-        {
-            string[] a = A1.Split('+','i','*');
-            string[] a1 = A2.Split('+', 'i', '*');
-            int c1 = int.Parse(a[0]) + int.Parse(a1[0]);
-            int c2 = int.Parse(a[1]) + int.Parse(a1[1]);
-            b1 = c1+ "+" + c2+"*i";
-            return b1;
-        }
+       
         public string Ayirma()
         {
             string[] a = A1.Split('+', 'i', '*');
@@ -68,21 +70,42 @@ namespace Vorislik13_2
             b1 = c1 + "+" +c2 + "*i";
             return b1;
         }
-        public string Bolinma()
+        public string Yigindi_Birinchiga()
         {
-            string[] a = A1.Split('+', 'i', '*');
-            string[] a1 = A2.Split('+', 'i', '*');
-            int c1 = int.Parse(a[0]) * int.Parse(a1[0]) + int.Parse(a[1]) * int.Parse(a1[1]);
-            int c2 = int.Parse(a1[0]) * int.Parse(a[1]) - int.Parse(a[0]) * int.Parse(a1[1]);
+            string[] a = A1.Split('+', 'i', '*');           
+            string x = Yigindi();
+            string[] y = x.Split(' ', '+', '-', '*');
+            int c1 = int.Parse(a[0]) * int.Parse(y[0]) + int.Parse(a[1]) * int.Parse(y[1]);
+            int c2 = int.Parse(y[0]) * int.Parse(a[1]) - int.Parse(a[0]) * int.Parse(y[1]);
             int c3 = int.Parse(a[0]) * int.Parse(a[0]) + int.Parse(a[1]) * int.Parse(a[1]);
-            if(c2>0 && c2<0)
-            b1 = (c1/c3 + " + " + "("+c2/c3+")" + "*i");
-            else if(c2==0)
+
+            if (c2 > 0 && c2 < 0)
+                b1 = (c1 / c3 + " + " + "(" + c2 / c3 + ")" + "*i");
+            else if (c2 == 0)
             {
                 b1 = (c1 / c3 + " + " + "(" + c2 / c3 + ")" + "*i");
-                b1 =b1.Remove(1);
+                b1 = b1.Remove(1);
+            }
+            return b1;
+        }
+        public string Yigindini_Ikkinchiga()
+        {
+            string[] a = A2.Split('+', 'i', '*');
+            string x = Yigindi();
+            string[] y = x.Split(' ', '+', '-', '*');
+            int c1 = int.Parse(a[0]) * int.Parse(y[0]) + int.Parse(a[1]) * int.Parse(y[1]);
+            int c2 = int.Parse(y[0]) * int.Parse(a[1]) - int.Parse(a[0]) * int.Parse(y[1]);
+            int c3 = int.Parse(a[0]) * int.Parse(a[0]) + int.Parse(a[1]) * int.Parse(a[1]);
+
+            if (c2 > 0 && c2 < 0)
+                b1 = (c1 / c3 + " + " + "(" + c2 / c3 + ")" + "*i");
+            else if (c2 == 0)
+            {
+                b1 = (c1 / c3 + " + " + "(" + c2 / c3 + ")" + "*i");
+                b1 = b1.Remove(1);
             }
             return b1;
         }
     }
+      
 }
